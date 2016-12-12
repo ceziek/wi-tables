@@ -1,0 +1,122 @@
+
+
+<md-content class="full-height y-scroll" layout-padding>
+
+  <table>
+    <thead>
+    <tr>
+      <td ng-click="sort = sort == '' ? '-id' : '' " ng-class="{'sort': sort == '' ,'sort sort-up':sort == '-id'}">Lp
+      </td>
+      <td ng-click="sort = sort == 'date' ? '-date' : 'date'"
+          ng-class="{'sort': sort == 'date' ,'sort sort-up':sort == '-date' }">Data sprzedaży
+      </td>
+      <td ng-click="sort = sort == 'name' ? '-name' : 'name'"
+          ng-class="{'sort': sort == 'name' ,'sort sort-up':sort == '-name' }">Usługobiorca
+      </td>
+      <td ng-click="sort = sort == 'cash' ? '-cash' : 'cash'"
+          ng-class="{'sort': sort == 'cash' ,'sort sort-up':sort == '-cash' }">Kwota
+      </td>
+      <td>Completed</td>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr ng-repeat-start="outcome in outcomes | orderBy: sort | filter: hideCompleted | filter: filterName | filter: searchDate  | filter: searchMonth"
+        ng-class="{selected: outcome.completed, edited: outcome.edit}"
+        ng-click="outcome.edit = !outcome.completed ? !outcome.edit : outcome.edit ">
+      <td>{{outcomes.indexOf(outcome) + 1}}</td>
+      <td>
+        <span> {{ outcome.date | date: 'dd-MM-yyyy' }} </span>
+      </td>
+      <td>{{ outcome.name }}</td>
+      <td>{{ (outcome.cash | number:2) + ' zł'}}</td>
+      <td layout-align="center center">
+        <md-checkbox ng-model="outcome.completed"
+                     aria-label="Checkbox 1"
+                     ng-click="$event.stopPropagation();">
+        </md-checkbox>
+      </td>
+    </tr>
+    <tr class="edit-panel" ng-repeat-end>
+      <td colspan="5">
+        <div class="edit-panel-wrapper"
+             layout
+             layout-align="space-around center"
+             ng-class="{active: outcome.edit}">
+          <md-input-container>
+            <label>Date</label>
+            <md-datepicker ng-model="outcome.date"
+                           md-placeholder="Enter date">
+            </md-datepicker>
+
+          </md-input-container>
+          <md-input-container>
+            <label>Name</label>
+            <input ng-model="outcome.name" type="text">
+          </md-input-container>
+
+          <md-input-container >
+            <label>Cash</label>
+            <input ng-model="outcome.cash" type="number">
+          </md-input-container>
+
+          <md-input-container>
+            <md-button class="md-raised md-accent"
+                       ng-click="delete(outcome.id)">
+              DELETE
+            </md-button>
+          </md-input-container>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="5">
+        <div>
+          <md-button class="md-raised md-primary" ng-if="!outcomes.add" ng-click="outcomes.add = !outcomes.add">
+            Add Record
+          </md-button>
+          <div ng-if="outcomes.add" layout layout-align="space-between center">
+
+            <md-input-container>
+              <label>Date</label>
+              <md-datepicker ng-model="newDate"
+                             md-placeholder="Enter date">
+              </md-datepicker>
+            </md-input-container>
+
+            <md-input-container >
+              <label>Name</label>
+              <input ng-model="newName" >
+            </md-input-container>
+
+            <md-input-container >
+              <label>Cash</label>
+              <input ng-model="newCash" >
+            </md-input-container>
+
+            <md-input-container>
+              <md-button class="md-raised md-primary"
+                         ng-click="addRecord(newName, newDate, newCash); outcomes.add = !outcomes.add" >
+                Add Record
+              </md-button>
+            </md-input-container>
+            <md-input-container>
+              <md-button class="md-raised md-accent"
+                         ng-click="outcomes.add = !outcomes.add" >
+                Cancel
+              </md-button>
+            </md-input-container>
+          </div>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</md-content>
+
+<div class="bottom-toolbar text-white"
+     layout
+     layout-align="center center">
+  <span class="md-title">Outcome:&nbsp;&nbsp;&nbsp;</span>
+  <span class="md-title"> {{ cashSum() }}</span>
+</div>

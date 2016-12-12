@@ -1,0 +1,158 @@
+/* app css stylesheet */
+
+$background-color: #fff;
+
+
+.myApp {
+  height: 100vh;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.y-scroll {
+  overflow-y: scroll;
+}
+
+.bg-white {
+  background-color: $background-color;
+}
+
+
+
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: $background-color;
+}
+
+.myApp-tables {
+
+  table {
+    font-size: 14px;
+    width: 100%;
+    border-collapse: separate;
+    margin-bottom: 4rem;
+
+    thead {
+      font-family: "Roboto", sans-serif;
+      font-weight: 500;
+
+      td {
+        border: none;
+        outline: none;
+        padding: 10px;
+        text-align: left;
+        position: relative;
+
+        &.sort {
+          &:before {
+            display: inline-block;
+            position: absolute;
+            content: url(img/icons/arrow_down.svg);
+            height: 14px;
+            transition: all .5s;
+            vertical-align: middle;
+            left: -5px;
+            top: 50%;
+            transform: translate(0, -50%);
+          }
+
+          &.sort-up {
+            &:before {
+              transform: translate(0, -50%) rotate(180deg);
+            }
+          }
+        }
+
+      }
+    }
+
+    tbody {
+      tr {
+        outline: 0;
+        &.selected {
+          opacity: .7;
+          filter: grayscale(60%);
+          background: rgba(68, 68, 68, 0.43);
+        }
+
+        &.edit-panel {
+          border: none;
+          td {
+            padding: 0;
+            border: none;
+
+            .edit-panel-wrapper {
+              height: 0;
+              overflow: hidden;
+              transition: all .7s;
+              background-color: #EEEEEE;
+              opacity: 0;
+
+              &.active {
+                opacity: 1;
+                height: 150px;
+                border-bottom: 1px solid #d6d6d6;
+              }
+            }
+          }
+        }
+
+        &.edited,
+        &:hover {
+          &:not(.selected){
+            background: #EEEEEE;
+          }
+        }
+
+
+        &:first-child {
+          td {
+            border-top: 1px solid #d6d6d6;
+          }
+        }
+
+        td {
+          padding: 1rem 1rem;
+          text-align: left;
+          vertical-align: middle;
+          border-bottom: 1px solid #d6d6d6;
+
+          md-checkbox {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+md-content {
+  background-color: $background-color;
+  overflow-y: hidden;
+}
+
+.bottom-toolbar {
+  padding: 5px;
+  background: rgba(68, 68, 68, 0.7);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+
+  h2 {
+    margin: 0;
+  }
+}

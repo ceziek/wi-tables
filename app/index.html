@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html lang="pl" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html lang="pl" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html lang="pl" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="pl" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My AngularJS App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+
+  <link rel="stylesheet" href="app.css">
+  <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body ng-controller="myAppCtrl" class="myApp">
+
+  <md-content class="full-height" layout="column" layout-align="space-between">
+
+    <md-toolbar class="md-primary">
+      <div class="md-toolbar-tools">
+        <md-button ng-click="toggleLeft()" class="md-icon-button" aria-label="Settings" ng-disabled="false">
+          <md-icon md-svg-icon="img/icons/menu.svg" class="text-white"></md-icon>
+        </md-button>
+        <h2>
+          <span></span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-icon-button" aria-label="Favorite">
+          <md-icon md-svg-icon="" style="color: greenyellow;"></md-icon>
+        </md-button>
+        <md-button class="md-icon-button" aria-label="More">
+          <md-icon md-svg-icon=""></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <section layout layout-align="center start" flex>
+
+      <md-sidenav
+              class="md-sidenav-left"
+              md-component-id="left"
+              md-whiteframe="4"
+              ng-cloak>
+        <md-content layout="column" layout-align="space-around stretch" layout-padding>
+
+          <h2>Filters</h2>
+
+          <md-input-container layout layout-align="space-around">
+            <span>Hide completed</span>
+            <md-checkbox ng-model="completed"
+                         aria-label="Checkbox 1"
+                         ng-click="$event.stopPropagation();">
+            </md-checkbox>
+          </md-input-container>
+
+          <md-input-container>
+            <label>Name</label>
+            <input ng-model="filterName">
+          </md-input-container>
+
+          <md-input-container>
+            <md-datepicker ng-model="selectedDate" md-placeholder="Enter date"></md-datepicker>
+          </md-input-container>
+
+          <md-input-container>
+            <label>Month</label>
+            <md-select ng-model="selectedMonth">
+              <md-option value=""></md-option>
+              <md-option ng-repeat="month in months" value="{{$index}}">{{ month }}</md-option>
+            </md-select>
+          </md-input-container>
+
+          <md-button ng-click="close()" class="md-primary">
+            Close Sidenav Left
+          </md-button>
+
+        </md-content>
+      </md-sidenav>
+
+      <div layout="column" class="full-height" md-whiteframe="2" flex ng-cloak>
+
+        <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+
+          <div layout layout-align="space-around" flex="grow">
+            <md-nav-item md-nav-href="#!/view1" name="Outcomes">Outcomes</md-nav-item>
+            <md-nav-item md-nav-href="#!/view2" name="Incomes">Incomes</md-nav-item>
+            <md-nav-item md-nav-href="#!/view3" name="Summary">Summary</md-nav-item>
+          </div>
+        </md-nav-bar>
+
+        <div layout="column" class="myApp-tables" ng-view flex></div>
+
+      </div>
+    </section>
+
+  </md-content>
+
+
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-material/angular-material.js"></script>
+  <script src="bower_components/angular-aria/angular-aria.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+
+  <script src="app.js"></script>
+  <script src="view1/view1.js"></script>
+  <script src="view2/view2.js"></script>
+  <script src="view3/view3.js"></script>
+</body>
+</html>
