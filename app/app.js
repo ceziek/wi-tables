@@ -44,10 +44,12 @@ angular.module('myApp', [
         }
     })
 
-    .config(['$locationProvider', '$routeProvider', '$mdDateLocaleProvider', function ($locationProvider, $routeProvider, $mdDateLocaleProvider) {
+    .config(['$locationProvider', '$routeProvider', '$mdDateLocaleProvider','$compileProvider', function ($locationProvider, $routeProvider, $mdDateLocaleProvider, $compileProvider) {
         $locationProvider.hashPrefix('!');
 
         $routeProvider.otherwise({redirectTo: '/view1'});
+
+        $compileProvider.preAssignBindingsEnabled( true );
 
         $mdDateLocaleProvider.formatDate = function (date) {
 
