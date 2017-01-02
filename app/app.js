@@ -54,6 +54,8 @@ angular.module('myApp', [
        // $locationProvider.html5Mode(true);
 
 
+        $compileProvider.preAssignBindingsEnabled( true );
+
         $mdDateLocaleProvider.formatDate = function (date) {
 
             if (date instanceof Date) {
