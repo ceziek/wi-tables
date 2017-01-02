@@ -44,7 +44,7 @@ angular.module('myApp', [
         }
     })
 
-    .config(['$locationProvider', '$routeProvider', '$mdDateLocaleProvider', function ($locationProvider, $routeProvider, $mdDateLocaleProvider) {
+    .config(['$locationProvider','$compileProvider', '$routeProvider', '$mdDateLocaleProvider', function ($locationProvider,$compileProvider, $routeProvider, $mdDateLocaleProvider) {
         $routeProvider.when('/view1', {templateUrl: 'view1/view1.html', controller: 'View1Ctrl'});
         $routeProvider.when('/view2', {templateUrl: 'view2/view2.html', controller: 'View2Ctrl'});
         $routeProvider.when('/view3', {templateUrl: 'view3/view3.html', controller: 'View3Ctrl'});
