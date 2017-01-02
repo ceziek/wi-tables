@@ -45,9 +45,14 @@ angular.module('myApp', [
     })
 
     .config(['$locationProvider', '$routeProvider', '$mdDateLocaleProvider', function ($locationProvider, $routeProvider, $mdDateLocaleProvider) {
-        $locationProvider.hashPrefix('!');
-
+        $routeProvider.when('/view1', {templateUrl: 'view1/view1.html', controller: 'View1Ctrl'});
+        $routeProvider.when('/view2', {templateUrl: 'view2/view2.html', controller: 'View2Ctrl'});
+        $routeProvider.when('/view3', {templateUrl: 'view3/view3.html', controller: 'View3Ctrl'});
         $routeProvider.otherwise({redirectTo: '/view1'});
+        //$locationProvider.hashPrefix('!');
+
+       // $locationProvider.html5Mode(true);
+
 
         $mdDateLocaleProvider.formatDate = function (date) {
 
@@ -65,7 +70,23 @@ angular.module('myApp', [
         $mdDateLocaleProvider.shortMonths = ['sty', 'lut', 'mar', 'kwi', 'maj', 'cze', 'lip', 'sie', 'wrz', 'paż', 'lis', 'gru'];
     }])
 
-    .controller('myAppCtrl', ['$scope', '$mdSidenav', '$log', function ($scope, $mdSidenav, $log) {
+    .controller('myAppCtrl', ['$scope', '$mdSidenav', '$log','$location', function ($scope, $mdSidenav, $log, $location) {
+
+
+        $scope.$watch('selectedIndex', function(current, old) {
+            switch (current) {
+                case 0:
+                    $location.url("/view1");
+                    console.log("clicked 0");
+                    break;
+                case 1:
+                    $location.url("/view2");
+                    break;
+                case 2:
+                    $location.url("/view3");
+                    break;
+            }
+        });
 
         $scope.selectedMonth = "";
         $scope.filterName = "";

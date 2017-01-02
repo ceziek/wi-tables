@@ -29,7 +29,7 @@
         <span> {{ outcome.date | date: 'dd-MM-yyyy' }} </span>
       </td>
       <td>{{ outcome.name }}</td>
-      <td>{{ (outcome.cash | number:2) + ' zł'}}</td>
+      <td>{{ (outcome.cash | number:2 ) + ' zł'}}</td>
       <td layout-align="center center">
         <md-checkbox ng-model="outcome.completed"
                      aria-label="Checkbox 1"
