@@ -96,4 +96,7 @@ md-content {
   .bottom-toolbar h2 {
     margin: 0; }
 
+.md-sidenav-left {
+  position: relative; }
+
 /*# sourceMappingURL=app.css.map */
