@@ -1,4 +1,4 @@
-# Tables app for DM WISA
+# Tables app
 
 
 ```
